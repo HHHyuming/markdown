@@ -64,9 +64,54 @@ const store = new Vuex.Store({
     }
   }
 })
+// 提交方式
+1.this.$store.commit('mutation',payload)
+2. this.$store.commit({
+	type:'mutationi',
+	amount: 'payload'
+})
 
+// 辅助函数 mapmutations
+import { mapmutations } from 'vuex'
+methods: {
+	...mapmutations(['mutation1','mutation1'])
+}
+```
 
-this.$store.commit('mutation',payload)
+### actions
+
+```
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+    increment (context) {
+      context.commit('increment')
+    }
+  }
+})
+
+// 触发方式
+1.store.dispatch('increment')
+2. store.dispatch({
+	type:'xxx',
+	amount:'xx'
+})
+
+// 组合方式
+actions: {
+  actionB ({ dispatch, commit }) {
+    return dispatch('actionA').then(() => {
+      commit('someOtherMutation')
+    })
+  }
+}
 ```
 
 
