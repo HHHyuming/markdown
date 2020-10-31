@@ -387,3 +387,25 @@ const Foo = {
 
 ```
 
+### 滚动行为
+
+```
+
+```
+
+### 路由懒加载
+
+```
+{
+          path: '/',
+          name: 'HelloWorld',
+          component: resolve => require(['@/components/HelloWorld'], resolve)
+}		
+
+{
+path: '/',
+name: 'HelloWorld',
+component: () => import('@/components/HelloWorld.vue')
+}
+```
+

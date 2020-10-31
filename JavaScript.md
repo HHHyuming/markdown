@@ -1,3 +1,97 @@
+## 表达式与运算法
+
+### 左移
+
+```js
+9 << 2  --------> 9 * 2**2
+9 << 3  --------> 9 * 2**3
+express * 2 ** n
+```
+
+### 右移
+
+```js
+9 >> 2 ------> 2
+express * (1/2 ** n)
+```
+
+### 生成器
+
+```js
+
+
+```
+
+### 立即调用函数表达式
+
+```js
+<a href="javascript:void(0);">
+  这个链接点击之后不会做任何事情，如果去掉 void()，
+  点击之后整个页面会被替换成一个字符 0。
+</a>
+<p> chrome中即使<a href="javascript:0;">也没变化，firefox中会变成一个字符串0 </p>
+<a href="javascript:void(document.body.style.backgroundColor='green');">
+  点击这个链接会让页面背景变成绿色。
+</a>
+```
+
+
+
+### &&=
+
+```
+let a = 1;
+let b = 0;
+
+a &&= 2;
+console.log(a);
+// expected output: 2
+
+b &&= 2;
+console.log(b);
+// expected output: 0
+```
+
+### 逻辑空
+
+```
+const a = { duration: 50 };
+
+a.duration ??= 10;
+console.log(a.duration);
+// expected output: 50
+
+a.speed ??= 25;
+console.log(a.speed);
+// expected output: 25
+
+
+x ?? (x = y);
+```
+
+### 可选链操作
+
+```js
+可选链操作符( ?. )允许读取位于连接对象链深处的属性的值，而不必明确验证链中的每个引用是否有效。?. 操作符的功能类似于 . 链式操作符，不同之处在于，在引用为空(nullish ) (null 或者 undefined) 的情况下不会引起错误，该表达式短路返回值是 undefined。与函数调用一起使用时，如果给定的函数不存在，则返回 undefined。
+1.================
+const adventurer = {
+  name: 'Alice',
+  cat: {
+    name: 'Dinah'
+  }
+};
+
+const dogName = adventurer.dog?.name;
+console.log(dogName);
+// expected output: undefined
+
+2.=================
+var a = {name:'alex'}
+a?.name ====> return 'alex'
+```
+
+
+
 ## 内置对象
 
 ### Array
@@ -12,7 +106,7 @@
 
 #### 方法
 
-```
+```js
 1.from 
 console.log(Array.from('foo'));
 // expected output: Array ["f", "o", "o"]
@@ -59,9 +153,102 @@ console.log(iterator1.next().value);
 // expected output: Array [0, "a"]
 console.log(iterator1.next().value);
 // expected output: Array [1, "b"]
-4.
+4. ================= every =========
+语法：# arr.every(callback(element[, index[, array]])[, thisArg])  
+当callback 返回的每一个元素为真时才为真
+const isBelowThreshold = (currentValue) => currentValue < 40;
+const array1 = [1, 30, 39, 29, 10, 13];
+console.log(array1.every(isBelowThreshold));
+5. ============= fill =================
+语法：# arr.fill(value[, start[, end]])
+const array1 = [1, 2, 3, 4];
+// fill with 0 from position 2 until position 4
 
+console.log(array1.fill(0, 2, 4));
+// expected output: [1, 2, 0, 0]
+
+// fill with 5 from position 1
+console.log(array1.fill(5, 1));
+// expected output: [1, 5, 5, 5]
+
+console.log(array1.fill(6));
+// expected output: [6, 6, 6, 6]
+
+6. ============= filter ================
+ 语法 #var newArray = arr.filter(callback(element[, index[, array]])[, thisArg])
+ const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+const result = words.filter(word => word.length > 6);
+console.log(result);
+// expected output: Array ["exuberant", "destruction", "present"]
+7.============= find ====================
+ # arr.find(callback[, thisArg])
+const array1 = [5, 12, 8, 130, 44];
+const found = array1.find(element => element > 10);
+console.log(found);
+// expected output: 12
+8. ================= findIndex ===========
+与7 类似，返回的是 index 而不是值
+
+9. ================= flat ============
+    深度递归遍历数组  
+# var newArray = arr.flat([depth])
+depth 默认为1
+# example
+const arr1 = [0, 1, 2, [3, 4]];
+console.log(arr1.flat());
+// expected output: [0, 1, 2, 3, 4]
+const arr2 = [0, 1, 2, [[[3, 4]]]];
+console.log(arr2.flat(2));
+// expected output: [0, 1, 2, [3, 4]]
+
+//使用 Infinity，可展开任意深度的嵌套数组
+var arr4 = [1, 2, [3, 4, [5, 6, [7, 8, [9, 10]]]]];
+arr4.flat(Infinity);
+// [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+10. ================ flatMap =================
+# var new_array = arr.flatMap(function callback(currentValue[, index[, array]]) {    // return element for new_array}[, thisArg])
+11. ============== forEach ==========
+ # arr.forEach(callback(currentValue [, index [, array]])[, thisArg])
+
+12. ================ includes ==========
+ # arr.includes(valueToFind[, fromIndex])
+fromIndex: 从什么位置开始查找
+includes() 方法用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回false。
+
+13. ================ indexOf ==========
+    # arr.indexOf(searchElement[, fromIndex])
+14. ============== join ============ 
+    拼接成字符串
+arr = ['arr','foo','bar']
+arr.join('') ----------> 'arrfoobar'
+
+15. ============= keys ===============
+ # arr.keys()
+
+const array1 = ['a', 'b', 'c'];
+const iterator = array1.keys();
+// expected output: 0
+// expected output: 1
+// expected output: 2
+16. ============= lastIndexOf ============
+    逆向查找
+17. ================= map ===============
+#    var new_array = arr.map(function callback(currentValue[, index[, array]]) { //Return element for new_array }[, thisArg])
+
+18 =================== pop =================
+    # arr.pop()
+
+19. ================ push =================
+    # arr.push(element1, ..., elementN)
+
+返回值:
+当调用该方法时，新的 length 属性值将被返回。
+
+20. ============= reduce =================
+    
 ```
+
+
 
 
 
@@ -71,7 +258,7 @@ console.log(iterator1.next().value);
 
 #### 属性
 
-```
+```js
 XMLHttpRequest.onreadystatechange
 	当 readyState 属性发生变化时，调用的 EventHandler。
 XMLHttpRequest.readyState
