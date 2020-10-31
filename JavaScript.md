@@ -1,5 +1,72 @@
 ## 内置对象
 
+### Array
+
+[参考链接](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+
+#### 属性
+
+```
+1.length   返回数组的长度  [number]
+```
+
+#### 方法
+
+```
+1.from 
+console.log(Array.from('foo'));
+// expected output: Array ["f", "o", "o"]
+
+console.log(Array.from([1, 2, 3], x => x + x));
+// expected output: Array [2, 4, 6]
+
+2.isArray 判断是否是一个数组
+Array.isArray([1, 2, 3]);  
+// true
+Array.isArray({foo: 123}); 
+// false
+Array.isArray("foobar");   
+// false
+Array.isArray(undefined);  
+// false
+
+3. Array.of    创建一个数组
+Array.of(7);       // [7] 
+Array.of(1, 2, 3); // [1, 2, 3]
+Array(7);          // [ , , , , , , ]
+Array(1, 2, 3);    // [1, 2, 3]
+
+====================================== 原型链上================================
+1.Array.prototype.concat()
+const array1 = ['a', 'b', 'c'];
+const array2 = ['d', 'e', 'f'];
+const array3 = array1.concat(array2);
+console.log(array3);
+// expected output: Array ["a", "b", "c", "d", "e", "f"]
+2.copywithin
+const array1 = ['a', 'b', 'c', 'd', 'e'];
+// copy to index 0 the element at index 3
+console.log(array1.copyWithin(0, 3, 4));
+// expected output: Array ["d", "b", "c", "d", "e"]
+// copy to index 1 all elements from index 3 to the end
+console.log(array1.copyWithin(1, 3));
+// expected output: Array ["d", "d", "e", "d", "e"]
+语法：arr.copyWithin(target[, start[, end]])
+3.entires 返回一个迭代器
+const array1 = ['a', 'b', 'c'];
+const iterator1 = array1.entries();
+console.log(iterator1.next().value);
+// expected output: Array [0, "a"]
+console.log(iterator1.next().value);
+// expected output: Array [1, "b"]
+4.
+
+```
+
+
+
+## WEB API
+
 ### XHR
 
 #### 属性
