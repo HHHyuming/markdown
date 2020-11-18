@@ -86,3 +86,14 @@ module.exports = {
 };
 ```
 
+## 指南
+
+### 安装
+
+```
+1. npm install --save-dev webpack
+
+如果是 webpack4.0 需要
+npm install --save-dev webpack-cli
+```
+
